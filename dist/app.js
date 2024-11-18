@@ -23,10 +23,13 @@ app.post('/sum', (req, res) => {
 });
 let users = [];
 app.post('/users', (req, res) => {
-    const { name, email } = req.body;
-    users.push({ name, email });
+    const { nimi, sposti } = req.body;
+    users.push({ nimi, sposti });
     res.json({ message: 'User successfully added' });
 });
+app.get('/users', (req, res) => {
+    res.status(201).json(users);
+});
 app.listen(port, () => {
-    console.log(`kukkuu täällä http://localhost:${port}`);
+    console.log(`Kukkuuko http://localhost:${port}`);
 });

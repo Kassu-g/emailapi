@@ -26,19 +26,23 @@ app.post('/sum', (req, res) => {
     res.json({ sum });
   });
 
-type TUser = {
-  name: string;
-  email: string;
-};
+interface TUser {
+  nimi: string;
+  sposti: string;
+}
 
 let users: TUser[] = [];
 
 app.post('/users', (req: Request, res: Response) => {
-  const { name, email }: TUser = req.body;
-  users.push({ name, email });
+  const { nimi, sposti }: TUser = req.body;
+  users.push({ nimi, sposti });
   res.json({ message: 'User successfully added' });
 });
 
+app.get('/users', (req: Request, res: Response) => {
+  res.status(201).json(users);
+});
+
 app.listen(port, () => {
-  console.log(`kukkuu täällä http://localhost:${port}`);
+  console.log(`Kukkuuko http://localhost:${port}`);
 });
