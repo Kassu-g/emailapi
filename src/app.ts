@@ -4,7 +4,6 @@ import path from 'path';
 const app = express();
 const port = 3000;
 
-app.use(express.json());
 
 app.use(express.static(path.join(__dirname, '../public')));
 
@@ -16,12 +15,16 @@ app.get('/echo/:id', (req: Request, res: Response) => {
   const { id } = req.params;
   res.json({ id });
 });
+app.use(express.json());
 
-app.post('/sum', (req: Request, res: Response) => {
-  const { numbers }: { numbers: number[] } = req.body;
-  const sum = numbers.reduce((acc, num) => acc + num, 0);
-  res.json({ sum });
-});
+app.post('/sum', (req, res) => {
+    const { numbers } = req.body;
+  
+  
+    const sum = numbers.reduce((summa: any, luku: any) => summa + luku, 0);
+  
+    res.json({ sum });
+  });
 
 type TUser = {
   name: string;
@@ -37,5 +40,5 @@ app.post('/users', (req: Request, res: Response) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`kukkuu täällä http://localhost:${port}`);
 });
