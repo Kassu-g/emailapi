@@ -40,7 +40,7 @@ app.post('/users', (req: Request, res: Response) => {
 });
 
 app.get('/users', (req: Request, res: Response) => {
-  res.status(201).json(users);
+  res.status(200).json(users);
 });
 
 app.listen(port, () => {
